@@ -1,43 +1,111 @@
 * {
   margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Lato', sans-serif;
-
   user-select: none;
   list-style: none;
 }
 
 .container {
-
   width: 100vw;
-  height: 100vh;
 
   padding: 50px 25px;
-
   overflow: hidden;
+}
+.container h1{
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 70px;
+}
+
+/* INPUT */
+*:focus {
+  outline: none;
+}
+
+.bar{
+  margin: 30px auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.bar input{
+  height: 40px;
+  margin-right: 20px;
+  width: 300px;
+  border:none;
+  border-bottom: solid 1px black;
+  font-size: 30px;
+}
+
+.bar button{
+  height: 40px;
+  padding: 10px 30px;
+  background: #0039e6;
+  color: white;
+  font-weight: bold;
+  border:none;
+  transition: 0.4s opacity;
+}
+.bar button:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+
+
+/* ITEMS NOTES */
+.listItems{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 70px;
 }
 
 .item{
-  width: 230px;
+  width: 400px;
+  min-height: 200px;
   padding: 15px;
   margin: 15px;
-  background: black;
-  color: white;
+  background: rgb(251, 251, 251);
+  color: rgb(51, 51, 51);
   position: relative;
-  height: 100px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 18px;
-
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 2px 6px rgb(223, 223, 223);
+  transition: 0.5s;
 }
-.item a{
+.item:hover{
+  transform: translateY(-5px);
+  box-shadow: -5px 9px 12px rgb(223, 223, 223);
+}
+
+/* close button */
+.item .delete{
   position: absolute;
   right: 20px;
   top:15px;
-  color: white;
+  color: #bababa;
   text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
 
+}
+.item p::first-letter{
+  text-transform: uppercase;
+}
+.evento{
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 20px
+}
+.day{
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  color: #0039e6
 }

@@ -18,8 +18,10 @@
     <!-- TEMPLATE: MESSAGE MENU -->
     <script id="template" type="text/x-handlebars-template">
       <div class="item" data-id="{{id}}">
-        <a href="#" class="delete">X</a>
-        <p>{{ text}}</p>
+        <a href="#" class="delete"><i class="far fa-times-circle"></i></a>
+        <p class="day">{{ date }}</p>
+        <input type="radio">
+        <p class="evento">{{ text}}</p>
       </div>
     </script>
 
@@ -33,8 +35,11 @@
   <body>
     <div class="container">
        <h1>To DO list</h1>
-       <input type="text" id="add" />
-       <button type="button">ADD ITEMS</button>
+       <div class="bar">
+        <input type="text" id="testo" placeholder="What do u need?"/>
+        <input type="date" id="data"/>
+         <button type="button">ADD ITEMS</button>
+       </div>
        <div class="listItems">
 
        </div>

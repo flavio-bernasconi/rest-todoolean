@@ -3,25 +3,34 @@ var urlApi = "http://157.230.17.132:3002/todos/";
 
 
 function addItems(){
-  var valore = $("#add").val();
-  console.log(valore);
+  var valoreTesto = $("#testo").val();
+  var valoreData = $("#data").val();
 
-  $.ajax({
-    url : urlApi,
-    method : "POST",
-    data : {
-      text : valore
-    },
-    success : function(){
-      console.log("aggiunto");
-      $(".listItems").empty();
-      getData();
-    },
-    errror : function(){
-      console.log("errore");
-    }
+  if (valoreTesto != "" && valoreData != "" ) {
+    $.ajax({
+      url : urlApi,
+      method : "POST",
+      data : {
+        text : valoreTesto,
+        date : valoreData
+      },
+      success : function(){
+        console.log("aggiunto");
+        $(".listItems").empty();
+        getData();
+        var valoreTesto = $("#testo").val("");
 
-  })
+      },
+      errror : function(){
+        console.log("errore");
+      }
+
+    })
+  }else {
+    console.log("input vuoto");
+  }
+
+
 }
 
 function deleteItem(){
@@ -57,7 +66,8 @@ function printItems(list){
 
     var daInserire = {
       text : base.text,
-      id : base.id
+      id : base.id,
+      date : base.date
     }
 
     var html = template(daInserire);
@@ -92,10 +102,17 @@ function init() {
     $("button").click(
       function(){
         addItems();
-        var valore = $("#add").val("");
 
       }
-    )
+    );
+
+    var tastoInvio = $("input");
+    $(tastoInvio).keypress(function(e){
+        if(e.keyCode == 13)
+        {
+          addItems();
+        }
+    });
 
 
 
