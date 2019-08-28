@@ -2,6 +2,36 @@
 var urlApi = "http://157.230.17.132:3002/todos/";
 
 
+function check(){
+  $(document).on("click","input[type=radio]",
+      function(){
+
+        var cerchio = $(this);
+        var box = cerchio.parent();
+        var idRadio = box.data("id");
+
+        console.log("radio ",idRadio);
+
+        $.ajax({
+          url : urlApi,
+          method : "POST",
+          data : {
+            spunta : "checked"
+          },
+          success : function(){
+            console.log(idRadio,"spunta aggiunta");
+
+          },
+          error : function(){
+            alert("error while checking element");
+          }
+        })
+      }
+    )
+}
+
+
+
 function addItems(){
   var valoreTesto = $("#testo").val();
   var valoreData = $("#data").val();
@@ -12,7 +42,7 @@ function addItems(){
       method : "POST",
       data : {
         text : valoreTesto,
-        date : valoreData
+        date : valoreData,
       },
       success : function(){
         console.log("aggiunto");
@@ -67,7 +97,9 @@ function printItems(list){
     var daInserire = {
       text : base.text,
       id : base.id,
-      date : base.date
+      date : base.date,
+      check : ""
+
     }
 
     var html = template(daInserire);
@@ -114,7 +146,7 @@ function init() {
         }
     });
 
-
+    check()
 
 }
 
