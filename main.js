@@ -3,10 +3,11 @@ var urlApi = "http://157.230.17.132:3002/todos/";
 
 
 function check(){
-  $(document).on("click","input[type=radio]",
+  $(document).on("click","input[type=checkbox]",
       function(){
 
         var cerchio = $(this);
+
         var box = cerchio.parent();
         var testo = box.find(".evento").text();
         var data = box.find(".day").text();
@@ -14,13 +15,26 @@ function check(){
 
         console.log("radio ",idRadio,testo,data);
 
+        var fatto = "";
+
+        if ($(this).prop("checked")) {
+          console.log("SONO c");
+          fatto = "checked"
+
+        }
+        else {
+          console.log("NON lo sono");
+          fatto = ""
+        }
+
         $.ajax({
           url : urlApi + idRadio,
-          method : "PUT",
+          method : "PUT",//put sovra scrive i dati quindi e' necessario prendere i
+          //valori del box attuali e rimettterli
           data : {
             text : testo,
             date : data,
-            spunta : "checked"
+            spunta : fatto
           },
           success : function(){
             console.log(idRadio,"spunta aggiunta");
@@ -30,6 +44,10 @@ function check(){
             alert("error while checking element");
           }
         })
+
+
+
+
       }
     )
 }
