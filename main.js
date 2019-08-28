@@ -8,14 +8,18 @@ function check(){
 
         var cerchio = $(this);
         var box = cerchio.parent();
+        var testo = box.find(".evento").text();
+        var data = box.find(".day").text();
         var idRadio = box.data("id");
 
-        console.log("radio ",idRadio);
+        console.log("radio ",idRadio,testo,data);
 
         $.ajax({
-          url : urlApi,
-          method : "POST",
+          url : urlApi + idRadio,
+          method : "PUT",
           data : {
+            text : testo,
+            date : data,
             spunta : "checked"
           },
           success : function(){
@@ -86,6 +90,7 @@ function deleteItem(){
 
 $(document).on("click",".delete",deleteItem)
 
+//template handle dove aggiungere nuovi elementi
 function printItems(list){
 
   var source = $("#template").html();
@@ -98,7 +103,7 @@ function printItems(list){
       text : base.text,
       id : base.id,
       date : base.date,
-      check : ""
+      check : base.spunta,
 
     }
 
